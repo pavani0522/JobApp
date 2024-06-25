@@ -20,8 +20,7 @@ public class TestController {
 	@Autowired
 	private JobService service;
 	
-	@GetMapping("jobposts")//if we need to send only xml data to client we can say produces
-	//@GetMapping(path="jobposts",produces={"application/json"})
+	@GetMapping("jobposts")
 	
 	public List<JobPost> getAllJobs() {
 		return service.getAllJobs();
@@ -36,10 +35,7 @@ public class TestController {
 	
 	
 	
-	  @PostMapping("jobposts") // we can also recieve particular kind of data by using consumes
-	  //@PostMapping(path="jobposts", consumes={application/xml})
-	  //when accepting data from server you need to use request body
-	  //when sending we should use response body if we use controller instead of RestController
+	  @PostMapping("jobposts") 
 	  public JobPost addJob(@RequestBody JobPost jobPost) 
 	  { 
 		  service.addJob(jobPost);

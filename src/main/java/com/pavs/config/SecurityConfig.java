@@ -41,6 +41,15 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
+		http
+		  .csrf(customizer -> customizer.disable())
+		  .authorizeHttpRequests(request -> request.anyRequest().authenticated())
+		  .httpBasic(Customizer.withDefaults())
+		  .sessionManagement(session ->
+		   session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		//http.formLogin(Customizer.withDefaults());
+		  return	http.build();
+		
 		/*
 		 * Customizer<CsrfConfigurer<HttpSecurity>> custCsrf=new
 		 * Customizer<CsrfConfigurer<HttpSecurity>>() {
@@ -67,14 +76,7 @@ public class SecurityConfig {
 		
 		
 		
-		  http
-		  .csrf(customizer -> customizer.disable())
-		  .authorizeHttpRequests(request -> request.anyRequest().authenticated())
-		  .httpBasic(Customizer.withDefaults())
-		  .sessionManagement(session ->
-		   session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-		//http.formLogin(Customizer.withDefaults());
-		  return	http.build();
+		  
 	}
 //	@Bean
 //	public UserDetailsService userDetailsService() {

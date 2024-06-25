@@ -15,14 +15,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 	
 	private static final Logger LOGGER= LoggerFactory.getLogger(LoggingAspect.class);
-	//we have to mention expression in before
-	//return-type fully-qualified-classname(includes package also).method-name(args..)
-	//if we want to call this method for all the methods in service class we can say *
-	//execution is after when of the mentioned ,this should happen
-	//the before is the advice here and what in ()pointcut
-	//point cut is expression to specify when you want advice to be called
-// called before executing the advice
-	// all the methods below are advices and before,after ,around are advices
+	
 	@Before("execution(* com.pavs.service.JobService.getJob(..))||execution(* com.pavs.service.JobService.getAllJobs(..))")
 	public void logMethodCall(JoinPoint jp)
 	{
